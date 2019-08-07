@@ -50,20 +50,17 @@ Route::group(['prefix' => 'product'], function () {
 
 Route::get('login', 'frontend\loginController@getLogin');
 
-
-
-// admin
+//ADMIN
 Route::group(['prefix' => 'admin'], function () {
-        Route::get('', 'backend\indexController@getIndex');
+    Route::get('',  'backend\indexController@getIndex');
 
-
-    // product
-   Route::group(['prefix' => 'product'], function () {
+    //product
+    Route::group(['prefix' => 'product'], function () {
         Route::get('',  'backend\productController@getListProduct');
         Route::get('add',  'backend\productController@getAddProduct');
         Route::get('edit',  'backend\productController@getEditProduct');
-   });
-
+    });
+ 
 
     //category
     Route::group(['prefix' => 'category'], function () {
@@ -84,5 +81,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('add', 'backend\userController@getAddUser' );
         Route::get('edit', 'backend\userController@geteditUser' );
     });
-
+    
+    
 });

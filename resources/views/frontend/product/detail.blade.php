@@ -166,5 +166,23 @@
 			</div>
 		</div>
 		<!-- end main -->
-@endsection
+@stop
+
+@section('script')
+@parent
+<script>
+	var quantity=1;
+	$('.quantity-right-plus').click(function () {
+		var quantity = parseInt($('#quantity').val());
+		$('#quantity').val(quantity + 1);
+	});
+
+	$('.quantity-left-minus').click(function (e) {
+		var quantity = parseInt($('#quantity').val());
+			if (quantity > 1) {
+				$('#quantity').val(quantity - 1);
+			}
+	});
+</script>
+@stop
 	

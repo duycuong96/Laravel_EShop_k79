@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class indexController extends Controller
 {
-    function getIndex() { 
-        return view('backend.index'); 
-    }
+    function getIndex() {  
+        return view('backend.index');
+     }
 }

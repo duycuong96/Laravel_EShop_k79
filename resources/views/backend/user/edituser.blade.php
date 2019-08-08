@@ -16,15 +16,14 @@
                     <div class="panel-heading"><i class="fas fa-user"></i> Sửa thành viên - admin@gmail.com</div>
                     <div class="panel-body">
                         <div class="row justify-content-center" style="margin-bottom:40px">
-
+                            <form method="post">
+                                @csrf
                             <div class="col-md-8 col-lg-8 col-lg-offset-2">
                              
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="text" name="email" class="form-control" value="admin@gmail.com">
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>email đã tồn tại!</strong>
-                                    </div>
+                                    {{ showError($errors,'email') }}
                                 </div>
                                 <div class="form-group">
                                     <label>password</label>
@@ -33,14 +32,17 @@
                                 <div class="form-group">
                                     <label>Full name</label>
                                     <input type="full" name="full" class="form-control" value="Nguyễn thế phúc">
+                                    {{ showError($errors,'full') }}
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
                                     <input type="address" name="address" class="form-control" value="Thường tín">
+                                  
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
                                     <input type="phone" name="phone" class="form-control" value="0356653300">
+                                    {{ showError($errors,'phone') }}
                                 </div>
                               
                                 <div class="form-group">
@@ -63,6 +65,7 @@
                         </div>
                     
                         <div class="clearfix"></div>
+                    </form>
                     </div>
                 </div>
 

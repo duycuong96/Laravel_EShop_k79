@@ -43,7 +43,8 @@
     
     @include('frontend.master.footer')
 
-    <!-- jQuery -->
+   @section('script')
+        <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <!-- jQuery Easing -->
     <script src="js/jquery.easing.1.3.js"></script>
@@ -63,6 +64,7 @@
     <script src="js/jquery.stellar.min.js"></script>
     <!-- Main -->
     <script src="js/main.js"></script>
+   @show
 
 </body>
 

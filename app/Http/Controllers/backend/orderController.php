@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 
 class orderController extends Controller
 {
-    
     function getOrder() { 
         return view('backend.order.order');
       }

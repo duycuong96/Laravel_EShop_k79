@@ -15,8 +15,10 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Thêm sản phẩm</div>
                     <div class="panel-body">
+                     <form  method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row" style="margin-bottom:40px">
-                             
+                            
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label>Danh mục</label>
@@ -30,14 +32,17 @@
                                         <div class="form-group">
                                             <label>Mã sản phẩm</label>
                                             <input type="text" name="code" class="form-control">
+                                           {{ showError($errors,'code') }}
                                         </div>
                                         <div class="form-group">
                                             <label>Tên sản phẩm</label>
                                             <input type="text" name="name" class="form-control">
+                                            {{ showError($errors,'name') }}
                                         </div>
                                         <div class="form-group">
                                             <label>Giá sản phẩm (Giá chung)</label>
                                             <input type="number" name="price" class="form-control">
+                                            {{ showError($errors,'price') }}
                                         </div>
                                         <div class="form-group">
                                             <label>Sản phẩm có nổi bật</label>
@@ -57,6 +62,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Ảnh sản phẩm</label>
+                                            {{ showError($errors,'img') }}
                                             <input id="img" type="file" name="img" class="form-control hidden"
                                                 onchange="changeImg(this)">
                                             <img id="avatar" class="thumbnail" width="100%" height="350px" src="img/import-img.png">
@@ -83,6 +89,7 @@
                                 </div>
                             </div>
                         <div class="clearfix"></div>
+                     </form>
                     </div>
                 </div>
 
@@ -91,4 +98,29 @@
 
         <!--/.row-->
     </div>
+@stop
+
+@section('script')
+@parent
+<script>
+    function changeImg(input){
+           //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
+           if(input.files && input.files[0]){
+               var reader = new FileReader();
+               //Sự kiện file đã được load vào website
+               reader.onload = function(e){
+                   //Thay đổi đường dẫn ảnh
+                   $('#avatar').attr('src',e.target.result);
+               }
+               reader.readAsDataURL(input.files[0]);
+           }
+       }
+       $(document).ready(function() {
+           $('#avatar').click(function(){
+               $('#img').click();
+           });
+       });
+
+   </script>
+
 @stop

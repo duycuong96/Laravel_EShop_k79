@@ -22,6 +22,35 @@ Route::group(['prefix' => 'thanhvien'], function () {
         echo "Đây là trang del";
     });
 });
+// schema các mã lệnh tạo cấu trúc bảng
+Route::group(['prefix' => 'schema'], function () {
+    //tạo bảng
+    Route::get('create-table', function () {
+
+       Schema::create('bang1', function ($table) {
+         $table->increments('id');
+         $table->string('name',100)->default('nguyễn thế phúc');
+         $table->string('address')->nullable();
+
+       });
+    
+    });
+
+    //sửa tên bảng
+    Route::get('rename-table', function () {
+        Schema::rename('bang1', 'thongtin');
+        echo 'đã đổi tên thành công';
+    });
+
+    //xoá bảng
+    Route::get('drop-table', function () {
+        Schema::dropIfExists('thongtin');
+        echo 'Đã xoá bảng thành công';
+    });
+    
+});
+
+
 
 // ------------------------->PROJECT
 // frontend

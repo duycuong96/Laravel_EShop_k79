@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 @section('title','Thêm Thành viên')
-
+@section('user','class=active')
 @section('content')
     <!-- sidebar left-->
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">

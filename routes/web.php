@@ -245,10 +245,11 @@ Route::group(['prefix' => 'admin'], function () {
     // user
     Route::group(['prefix' => 'user'], function () {
         Route::get('',  'backend\userController@getUser');
-        Route::get('add', 'backend\userController@getAddUser' );
-        Route::post('add', 'backend\userController@postAddUser' );
-        Route::get('edit', 'backend\userController@geteditUser' );
-        Route::post('edit', 'backend\userController@postEditUser' );
+        Route::get('add','backend\userController@getAddUser');
+        Route::post('add','backend\userController@postAddUser');
+        Route::get('edit/{idUser}','backend\userController@geteditUser');
+        Route::post('edit/{idUser}','backend\userController@postEditUser');
+        Route::get('del/{idUser}','backend\userController@delUser' );
     });
     
     

@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 @section('title','Danh sách sản phẩm')
-
+@section('category','class=active')
 @section('content')
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -31,12 +31,8 @@
 								<div class="form-group">
 									<label for="">Danh mục cha:</label>
 									<select class="form-control" name="" id="">
-										<option>----ROOT----</option>
-										<option>Nam</option>
-										<option>---|Áo khoác nam</option>
-										<option>---|---|Áo khoác nam</option>
-										<option>Nữ</option>
-										<option>---|Áo khoác nữ</option>
+										<option value="0">----ROOT----</option>
+										{{ getCategory($categories,0,'') }}
 									</select>
 								</div>
 								<div class="form-group">

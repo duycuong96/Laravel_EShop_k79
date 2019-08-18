@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    //mặc định liên kết đến bảng users
     use Notifiable;
+    public $timestamps=false;
 
     /**
      * The attributes that are mass assignable.

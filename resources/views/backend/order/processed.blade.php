@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 @section('title','Đơn đã Xử lý')
-
+@section('order','class=active')
 @section('content')
 
 	<!--main-->

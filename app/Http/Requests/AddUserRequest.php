@@ -24,7 +24,7 @@ class AddUserRequest extends FormRequest
     public function rules()
     {
         return [
-           'email'=>'required|email',
+           'email'=>'required|email|unique:users,email',
            'password'=>'required|min:5',
            'full'=>'required|min:4',
            'phone'=>'required|min:7'
@@ -35,6 +35,7 @@ class AddUserRequest extends FormRequest
         return [
             'email.required'=>'Email Không được để trống!',
             'email.email'=>'Email Không đúng định dạng!',
+            'email.unique'=>'Email đã tồn tại!',
             'password.required'=>'Mật khẩu Không được để trống!',
             'password.min'=>'Mật khẩu không được nhỏ hơn 5 ký tự!',
             'full.required'=>'Họ tên Không được để trống!',

@@ -231,8 +231,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'category'], function () {
         Route::get('','backend\categoryController@getCategory' );
         Route::post('','backend\categoryController@postCategory' );
-        Route::get('edit', 'backend\categoryController@getEditCategory');
-        Route::post('edit','backend\categoryController@postEditCategory' );
+        Route::get('edit/{idCate}', 'backend\categoryController@getEditCategory');
+        Route::post('edit/{idCate}','backend\categoryController@postEditCategory' );
+        Route::get('del/{idCate}', 'backend\categoryController@delCategory');
     });
     
     //order

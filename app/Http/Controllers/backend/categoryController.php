@@ -11,15 +11,28 @@ class categoryController extends Controller {
     }
 
     function postCategory(AddCategoryRequest $r) {
-        
+        $cate=new category;
+        $cate->name=$r->name;
+        $cate->slug=str_slug($r->name);
+        $cate->parent=$r->idParent;
+        $cate->save();
+        return redirect()->back()->with('thongbao','Đã thêm thành công!');
     }
 
 
-    function getEditCategory() {
-        return view('backend.category.editcategory');
+    function getEditCategory($idCate) {
+        $data['category']=category::find($idCate);
+        $data['categories']=category::all()->toArray();
+        return view('backend.category.editcategory',$data);
     }
 
     function postEditCategory(EditCategoryRequest $r) {
         
+    }
+
+    function delCategory($idCate)
+    {
+        category::destroy($idCate);
+        return redirect()->back()->with('thongbao','Đã xoá thành công!');
     }
 }

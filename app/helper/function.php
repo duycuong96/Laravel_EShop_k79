@@ -8,11 +8,35 @@
 
 }
 
-function getCategory($danhMuc, $idCha, $chuoiTab) {
+function getCategory($danhMuc, $idCha, $chuoiTab,$idChon) {
     foreach($danhMuc as $banGhi) {
         if($banGhi['parent']==$idCha) {
-            echo   '<option value="'.$banGhi['id'].'">'.$chuoiTab.$banGhi['name'].'</option>';
-            getCategory($danhMuc, $banGhi['id'], $chuoiTab.'---|');
+           if($banGhi['id']==$idChon)
+           {
+            echo  '<option selected value="'.$banGhi['id'].'">'.$chuoiTab.$banGhi['name'].'</option>';
+           }
+           else {
+            echo  '<option value="'.$banGhi['id'].'">'.$chuoiTab.$banGhi['name'].'</option>';
+           }
+            getCategory($danhMuc, $banGhi['id'], $chuoiTab.'---|',$idChon);
+        }
+
+    }
+
+}
+
+function showCategory($danhMuc, $idCha, $chuoiTab) {
+    foreach($danhMuc as $banGhi) {
+        if($banGhi['parent']==$idCha) {
+            echo '
+            <div class="item-menu"><span>'.$chuoiTab.$banGhi['name'].'</span>
+            <div class="category-fix">
+                <a class="btn-category btn-primary" href="/admin/category/edit/'.$banGhi['id'].'"><i class="fa fa-edit"></i></a>
+                <a class="btn-category btn-danger" href="/admin/category/del/'.$banGhi['id'].'"><i class="fas fa-times"></i></i></a>
+            </div>
+            </div>
+            ';
+            showCategory($danhMuc, $banGhi['id'], $chuoiTab.'---|');
         }
 
     }

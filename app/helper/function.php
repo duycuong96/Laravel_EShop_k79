@@ -42,3 +42,21 @@ function showCategory($danhMuc, $idCha, $chuoiTab) {
     }
 
 }
+
+
+function getLevel($danhMuc,$idCha,$cap)
+{
+	foreach($danhMuc as $banGhi)
+	{
+		if($banGhi['id']==$idCha)
+		{
+			$cap++;
+			if($banGhi['parent']==0)
+			{
+				return $cap;
+			}
+		    return getLevel($danhMuc,$banGhi['parent'],$cap);
+
+		}
+	}
+}

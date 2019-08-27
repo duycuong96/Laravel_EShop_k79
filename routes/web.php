@@ -174,15 +174,29 @@ Route::group(['prefix' => 'query'], function () {
     });
 
 
-
-
-
-
-
-  
-
 });
 
+
+// pivot - tương tác với bảng trung gian
+// thêm
+Route::get('attach', function () {
+    //admin@gmail.com (1) đăng ký 3 lơp toán(1),lý(2), hoá(3)
+
+    App\User::find(1)->lop()->attach([1,2,3]);
+});
+
+//cập nhập
+Route::get('Sync', function () {
+    App\User::find(1)->lop()->Sync([1,2,3,4]);
+});
+
+// xoá
+Route::get('detach', function () {
+    // App\User::find(1)->lop()->detach([3,4]);
+
+    // xoá tất cả;
+App\User::find(1)->lop()->detach();
+});
 
 
 // ------------------------->PROJECT
@@ -222,8 +236,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('',  'backend\productController@getListProduct');
         Route::get('add',  'backend\productController@getAddProduct');
         Route::post('add',  'backend\productController@postAddProduct');
-        Route::get('edit',  'backend\productController@getEditProduct');
-        Route::post('edit',  'backend\productController@postEditProduct');
+        Route::get('edit/{idPrd}',  'backend\productController@getEditProduct');
+        Route::post('edit/{idPrd}',  'backend\productController@postEditProduct');
     });
  
 

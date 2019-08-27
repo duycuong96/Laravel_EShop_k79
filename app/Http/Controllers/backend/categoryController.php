@@ -11,12 +11,21 @@ class categoryController extends Controller {
     }
 
     function postCategory(AddCategoryRequest $r) {
-        $cate=new category;
-        $cate->name=$r->name;
-        $cate->slug=str_slug($r->name);
-        $cate->parent=$r->idParent;
-        $cate->save();
-        return redirect()->back()->with('thongbao','Đã thêm thành công!');
+        $categories=category::all()->toArray();
+        if(getLevel($categories,$r->idParent,1)<3)
+        {
+            $cate=new category;
+            $cate->name=$r->name;
+            $cate->slug=str_slug($r->name);
+            $cate->parent=$r->idParent;
+            $cate->save();
+            return redirect()->back()->with('thongbao','Đã thêm thành công!');
+        }
+        else
+        {
+            return redirect()->back()->withErrors(['name'=>'Giao diện không hỗ trợ danh mục > 2 cấp']);
+        }
+       
     }
 
 
@@ -26,8 +35,22 @@ class categoryController extends Controller {
         return view('backend.category.editcategory',$data);
     }
 
-    function postEditCategory(EditCategoryRequest $r) {
-        
+    function postEditCategory(EditCategoryRequest $r,$idCate) {
+        $categories=category::all()->toArray();
+        if(getLevel($categories,$r->idParent,1)<3)
+        {
+        $cate=category::find($idCate);
+        $cate->name=$r->name;
+        $cate->slug=str_slug($r->name);
+        $cate->parent=$r->idParent;
+        $cate->save();
+        return redirect()->back()->with('thongbao','Đã Sửa thành công!');
+        }
+        else
+        {
+            return redirect()->back()->withErrors(['name'=>'Giao diện không hỗ trợ danh mục > 2 cấp'])->withInput();
+        }
+
     }
 
     function delCategory($idCate)

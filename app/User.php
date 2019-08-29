@@ -49,4 +49,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\models\lop', 'users_lop', 'users_id', 'lop_id');
     }
+ 
 }

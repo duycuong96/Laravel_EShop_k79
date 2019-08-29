@@ -225,12 +225,12 @@ Route::group(['prefix' => 'product'], function () {
     Route::get('detail', 'frontend\productController@getDetail');
 });
 
-Route::get('login', 'frontend\loginController@getLogin');
-
+Route::get('login', 'frontend\loginController@getLogin')->middleware('checkLogout');
+Route::post('login', 'frontend\loginController@postLogin');
 //ADMIN
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'checkLogin'], function () {
     Route::get('',  'backend\indexController@getIndex');
-
+    Route::get('logout',  'backend\indexController@logout');
     //product
     Route::group(['prefix' => 'product'], function () {
         Route::get('',  'backend\productController@getListProduct');
